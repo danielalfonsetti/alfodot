@@ -1,2 +1,3 @@
 - https://github.com/ray-x/lsp_signature.nvim
 - precommit hooks
+- Figure out how to auto install stuff.
