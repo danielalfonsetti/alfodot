@@ -5,6 +5,9 @@ My dotfiles.
 - You can install stow on WSL Ubuntu with `sudo apt install stow`.
 - On Fedora, you can install stow with `sudo dnf install stow`.
 - If you want all packages to be top level 'installed' in ~, then you can simple go to the root of this repo that you cloned and then run
+- git submodule init
+- git submodule update
+- 
 ``stow */ --target ~` or even better ```stow --restow */ --target ~`
 - Note that its safer to use `*/` rather than dot because we don't want to  also install top level files in this repo into the target.
 - There are also some directories that we don't want stowed. So put those in `.stow-local-ignore`.
