@@ -1,0 +1,45 @@
+[init]
+	defaultBranch = main
+[user]
+	email = daniel.alfonsetti@gmail.com
+	name = Daniel Alfonsetti
+# git config --global pager.branch 'false'
+[pager]
+	branch = false
+	diff = false
+	status = false
+# https://stackoverflow.com/a/72401899
+[push]
+	autoSetupRemote = true
+	# this default is needed too.
+	default = current
+# note: Unlike if we defined these in bash, these aliases are acting as subcommands of git
+# e.g. `git pr`, `git tree`, etc.
+[alias]
+	# ! means its a shell command, not a git command
+	# f() starts a function definition
+	# f calls the function
+	# make sure we have set `gh config set browser wslview`
+	# wslview is a utility from  https://github.com/wslutilities/wslu
+	# gh is the github cli.
+    # pr = "!f() { gh pr view --web; };f"
+	# https://www.reddit.com/r/git/comments/1c8upsv/share_your_best_git_alias_you_made/
+	; pr = !sh -c "gh pr view --web || (gh pr create --fill --web && gh pr view --web)" # "Get the pull request"
+	pr = "!sh -c \"gh pr view --web || (gh pr create --fill --web && gh pr view --web)\""
+	mr = pr
+    pr-create = "!sh -c 'gh pr create --fill'"
+	famend=!git add . && git commit --amend --no-edit && git push --force-with-lease 
+	famends=!git add . && git commit --amend --no-edit && git push --force-with-lease -o ci.skip
+	checkin="!f() { git add $1; git commit -m \"file checkin\"; git push --force-with-lease; }; f"
+	checkins="!f() { git add $1; git commit -m \"file checkin\"; git push --force-with-lease -o ci.skip; }; f"
+	browse = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); if [ -z \"$1\" ]; then gh browse --branch \"$branch\"; else gh browse --branch \"$branch\" \"$1\"; fi }; f"
+	# Switch to main branch if it exists.
+	# Then remove branches that have been deleted on remote.
+	# Then, optionally, if provided a branch name, create a new branch and switch to it.
+	tidy= "!f() { git rev-parse --verify main >/dev/null 2>&1 && git switch main || git switch master; git pull --prune; git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D; if [ -n \"$1\" ]; then git switch $1 2>/dev/null || git switch -c $1; fi; }; f"
+	pbranch = "!f() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(color: red)%(committerdate:relative) %(color: cyan)%(refname:short)' --color=always | head -n ${1-10}; }; f"
+	tree = "!git log --all --graph --decorate --oneline"
+	vmain = !gh repo view --web --branch main
+	repo = "!gh repo view --web"
+[help]
+	autocorrect = 20

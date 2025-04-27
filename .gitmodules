@@ -1,0 +1,6 @@
+[submodule "nvim/.config/nvim"]
+	path = nvim/.config/nvim
+	url = git@github.com:danielalfonsetti/starter.git
+[submodule "oh-my-bash/.oh-my-bash"]
+	path = oh-my-bash/.oh-my-bash
+	url = git@github.com:danielalfonsetti/oh-my-bash.git
