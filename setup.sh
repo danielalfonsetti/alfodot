@@ -3,7 +3,7 @@
 stow_overwrite_replace() {
     # adopted from
     # https://unix.stackexchange.com/questions/680413/opposite-of-adopt-option-for-gnu-stow
-    echo "Will overwrite (with confirmation) any conflicting files with the version of the files from the last commit in this dotfile repo if they are conflicts."
+    echo "Will overwrite (with confirmation) any conflicting files with the version of the files from the _LAST_ commit in this dotfile repo if they are conflicts."
     git stash # stash so that we only overwrite files with versions from the last commit of this repo.
 
     # MAKE AND CHECKOUT TEMPORARY BRANCH AND SAVE NAME OF CURRENT BRANCH

@@ -390,17 +390,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Override cd command
-cd() {
-    if [ -d "$1" ]; then
-        builtin cd "$1"
-    elif [ -f "$1" ]; then
-        builtin cd "$(dirname "$1")"
-    else
-        echo "bash: cd: $1: No such file or directory"
-        return 1
-    fi
-}
+
 
 lsenv() {
   echo "You can activate the environment with source <path to activate>"
@@ -417,7 +407,7 @@ alias lsvenv='lsenv'
 # End of settings for interactive use.
 ######################################################################
 
-source ~/tools/z.sh
+# source ~/tools/z.sh
 
 # eval "$(micromamba shell hook --shell bash)"
 # eval "$(direnv hook bash)"
@@ -438,7 +428,33 @@ source ~/tools/z.sh
 
 # https://stackoverflow.com/questions/56836530/auto-activate-conda-env-when-changing-directory
 # .direnv doesn't work well for activating and deactivating the env, so I just use this instead.
-cd() { builtin cd "$@" && 
+
+# Override cd command
+cd_graceful_not_dir() {
+    if [ -d "$1" ]; then
+        _omb_directories_cd "$1"
+        # builtin cd "$1"
+    elif [ -f "$1" ]; then
+        _omb_directories_cd  "$(dirname "$1")"
+        # builtin cd "$(dirname "$1")"
+    else
+        echo "bash: cd: $1: No such file or directory"
+        return 1
+    fi
+}
+
+
+# cd_graceful_not_dir() {
+#     if ! builtin cd "$1" 2>/dev/null; then
+#         if [ -f "$1" ]; then
+#             builtin cd "$(dirname "$1")" || return 1
+#         else
+#             return 1
+#         fi
+#     fi
+# }
+
+cd_wrapper() { cd_graceful_not_dir "$@" && 
 if [ -f $PWD/.conda_config ]; then
     export CONDACONFIGDIR=$PWD
     micromamba activate $(cat .conda_config)
@@ -448,6 +464,7 @@ elif [ "$CONDACONFIGDIR" ]; then
         micromamba deactivate
     fi
 fi }
+alias cd=cd_wrapper
 
 
 

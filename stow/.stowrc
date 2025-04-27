@@ -1,4 +1,5 @@
 # Default target directory for stow
 --target=~
-# Could look at in the future https://github.com/aspiers/ANTIFOLD
+# Note that stow will automatically not fold trees if there are files it needs to ignore
+# nested in the tree structure.
 # --no-folding
