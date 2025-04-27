@@ -1,2 +1,2 @@
-^STOW_IGNORE
+^STOW_IGNORE.*
 .vscode
