@@ -1,5 +1,8 @@
 #!/bin/sh
-# https://stackoverflow.com/questions/11258737/restore-git-submodules-from-gitmodules
+: '
+Inspired from https://stackoverflow.com/questions/11258737/restore-git-submodules-from-gitmodules
+Utility 
+'
 
 set -e
 
