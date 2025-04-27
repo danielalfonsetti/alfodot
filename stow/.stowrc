@@ -1,4 +1,4 @@
 # Default target directory for stow
 --target=~
 # Could look at in the future https://github.com/aspiers/ANTIFOLD
-<!-- --no-folding -->
+# --no-folding
