@@ -43,3 +43,5 @@
 	repo = "!gh repo view --web"
 [help]
 	autocorrect = 20
+[core]
+	excludesFile = /home/daniel/.git_global_exclude
