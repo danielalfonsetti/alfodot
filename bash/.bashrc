@@ -6,6 +6,8 @@ list_tmux_session_processes() {
 }
 
 
+
+
 run_command_in_tmux_session() {
     if [ "$#" -lt 2 ]; then
         echo "Usage: run_command_in_tmux_session <SESSION_NAME> <COMMAND>"
@@ -56,7 +58,7 @@ unset __conda_setup
 ####################
 source ~/bash_utils/.my_bash_functions.sh
 
-export PATH=$PATH:~/.my_bins/
+# export PATH=$PATH:~/.my_bins/
 
 
 #  conda activate alfonsetti_base
@@ -96,10 +98,10 @@ PATH="$MAVEN_DIR/bin:$PATH"
 # }
 # . "$HOME/.cargo/env"
 
-# >>> mamba initialize >>>
+# >>> >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/home/daniel/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/daniel/micromamba';
+export MAMBA_EXE='/home/alfonsetti/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='/home/alfonsetti/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -111,8 +113,8 @@ unset __mamba_setup
 export PATH="${PATH}:/home/daniel/.local/bin/"
 
 
-if ! echo "$PATH" | grep -q "/home/daniel/bin"; then
-    export PATH="/home/daniel/bin:$PATH"
+if ! echo "$PATH" | grep -q ~/my_bins; then
+    export PATH=~/my_bins:$PATH
 fi
 
 alias cwd='pwd'
@@ -476,8 +478,20 @@ export XLA_FLAGS=--xla_gpu_cuda_data_dir=/home/daniel/miniconda3/nvvm
 memory_fix() {
     # https://github.com/microsoft/WSL/issues/4166#issuecomment-2488420716
     sync
-    echo 3 | sudo tee /proc/sys/vm/drop_caches
+    echo 3 | sudo tee /proc/sys/mamba initialize vm/drop_caches
     # https://devblogs.microsoft.com/commandline/memory-reclaim-in-the-windows-subsystem-for-linux-2/
     echo 1 | sudo tee /proc/sys/vm/compact_memory
 }
 
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+
+
+# Add path containing the nvidia cuda comiler (nvcc)
+export PATH=/usr/local/cuda/bin:$PATH
+
+# the LD_LIBRARY_PATH environment variable is not specific to C++. 
+# It is used by the dynamic linker on Linux systems to locate shared libraries (.so files)
+# for any dynamically linked application, regardless of the programming language.
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
