@@ -111,8 +111,8 @@ unset __mamba_setup
 export PATH="${PATH}:/home/daniel/.local/bin/"
 
 
-if ! echo "$PATH" | grep -q "/home/daniel/my_bins"; then
-    export PATH="/home/daniel/my_bins:$PATH"
+if ! echo "$PATH" | grep -q "/home/daniel/bin"; then
+    export PATH="/home/daniel/bin:$PATH"
 fi
 
 alias cwd='pwd'
