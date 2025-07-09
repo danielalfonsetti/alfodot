@@ -497,4 +497,5 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 
 DOLPHIN_SPAGHETTI_ROOT=/home/alfonsetti/code/github/dolphin_spaghetti
-export PYTHONPATH=${PYTHONPATH}:${DOLPHIN_SPAGHETTI_ROOT}export PATH="/home/alfonsetti/.pixi/bin:$PATH"
+export PYTHONPATH=${PYTHONPATH}:${DOLPHIN_SPAGHETTI_ROOT}
+export PATH="/home/alfonsetti/.pixi/bin:$PATH"
