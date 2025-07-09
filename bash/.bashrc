@@ -498,4 +498,15 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 DOLPHIN_SPAGHETTI_ROOT=/home/alfonsetti/code/github/dolphin_spaghetti
 export PYTHONPATH=${PYTHONPATH}:${DOLPHIN_SPAGHETTI_ROOT}
-export PATH="/home/alfonsetti/.pixi/bin:$PATH"
+
+
+# Pixi global tools
+# https://pixi.sh/latest/global_tools/introduction/
+# pixi global install direnv
+# pixi global install chezmoi
+
+export PIXI_HOME="~/.pixi"
+export PATH="${PIXI_HOME}/bin:$PATH"
+
+
+# https://direnv.net/docs/hook.html
