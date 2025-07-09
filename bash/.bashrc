@@ -7,7 +7,6 @@ list_tmux_session_processes() {
 
 
 
-
 run_command_in_tmux_session() {
     if [ "$#" -lt 2 ]; then
         echo "Usage: run_command_in_tmux_session <SESSION_NAME> <COMMAND>"
@@ -493,3 +492,7 @@ export PATH=/usr/local/cuda/bin:$PATH
 # It is used by the dynamic linker on Linux systems to locate shared libraries (.so files)
 # for any dynamically linked application, regardless of the programming language.
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+
+DOLPHIN_SPAGHETTI_ROOT=/home/alfonsetti/code/github/dolphin_spaghetti
+export PYTHONPATH=${PYTHONPATH}:${DOLPHIN_SPAGHETTI_ROOT}export PATH="/home/alfonsetti/.pixi/bin:$PATH"
