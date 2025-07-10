@@ -65,8 +65,8 @@ PATH="$MAVEN_DIR/bin:$PATH"
 
 # >>> >>>
 # !! Contents within this block are managed by 'micromamba shell init' !!
-export MAMBA_EXE='/home/alfonsetti/.local/bin/micromamba';
-export MAMBA_ROOT_PREFIX='/home/alfonsetti/micromamba';
+export MAMBA_EXE='~/.local/bin/micromamba';
+export MAMBA_ROOT_PREFIX='~/micromamba';
 __mamba_setup="$("$MAMBA_EXE" shell hook --shell bash --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__mamba_setup"
@@ -462,7 +462,7 @@ export PATH=/usr/local/cuda/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 
-DOLPHIN_SPAGHETTI_ROOT=/home/alfonsetti/code/github/dolphin_spaghetti
+DOLPHIN_SPAGHETTI_ROOT=~/code/github/dolphin_spaghetti
 export PYTHONPATH=${PYTHONPATH}:${DOLPHIN_SPAGHETTI_ROOT}
 
 

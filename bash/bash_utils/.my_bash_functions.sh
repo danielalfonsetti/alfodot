@@ -16,6 +16,10 @@ rebash() {
     source ~/.bashrc
 }
 
+cleanbash() {
+    env -i HOME="$HOME" USER="$USER" SHELL="$SHELL" TERM="$TERM" PATH="$PATH" $SHELL
+}
+
 
 list_tmux_session_processes() {
     SESSION_NAME=$1
