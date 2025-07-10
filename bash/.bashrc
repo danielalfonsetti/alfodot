@@ -1,52 +1,18 @@
 echo "Sourcing ~/.bashrc"
 
-list_tmux_session_processes() {
-    SESSION_NAME=$1
-    tmux list-panes -t "$SESSION_NAME" -F "#{pane_pid}" | xargs -I{} ps --ppid {} | grep -v 'bash'
-}
-
-
-
-run_command_in_tmux_session() {
-    if [ "$#" -lt 2 ]; then
-        echo "Usage: run_command_in_tmux_session <SESSION_NAME> <COMMAND>"
-        return 1
-    fi
-
-    SESSION_NAME=$1
-    COMMAND=$2
-
-    # Check if the tmux session exists
-    if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-        # Check if there are any processes running in the tmux session
-
-        procs=$(list_tmux_session_processes "$SESSION_NAME")
-        echo "$procs"
-        if [ $(echo "$procs" | wc -l) -lt 2 ]; then
-            # No processes running, run the command
-            tmux send-keys -t "$SESSION_NAME" "$COMMAND" C-m
-        fi
-    else
-        # Create a new tmux session and run the command
-        tmux new-session -d -s "$SESSION_NAME" "$COMMAND"
-        # tmux send-keys -t "$SESSION_NAME" "$COMMAND" C-m
-    fi
-    tmux attach-session -t "$SESSION_NAME"
-    # Attach to the existing session
-}
 
 # export DIRENV_LOG_FORMAT=""
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/daniel/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/~miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/daniel/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/daniel/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/~miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/~miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/daniel/miniconda3/bin:$PATH"
+        export PATH="/~miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -92,7 +58,7 @@ PATH="$MAVEN_DIR/bin:$PATH"
 
 # use_conda() {
 #   echo "Hello world"
-#   . /home/daniel/miniconda3/condabin/conda
+#   . /~miniconda3/condabin/conda
 #   conda activate "$1"
 # }
 # . "$HOME/.cargo/env"
@@ -109,7 +75,7 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
-export PATH="${PATH}:/home/daniel/.local/bin/"
+export PATH="${PATH}:/~.local/bin/"
 
 
 if ! echo "$PATH" | grep -q ~/my_bins; then
@@ -132,10 +98,10 @@ alias cwd='pwd'
 # micromamba deactivate 
 
 # https://github.com/FiloSottile/mkcert?tab=readme-ov-file#installing-the-ca-on-other-systems
-export CAROOT='/home/daniel/mkcert'
+export CAROOT='/~mkcert'
 
 # https://stackoverflow.com/questions/49919063/installing-npm-node-on-bash-on-ubuntu-on-windows-wsl-what-architecture-does-u
-export NVM_DIR="/home/daniel/.nvm"
+export NVM_DIR="/~.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm (node version manager?)
 
 
@@ -155,7 +121,7 @@ export OSH=~/.oh-my-bash
 # OSH_THEME="font"
 # OSH_THEME="powerline-light"
 # OSH_THEME='minimal-gh'
-# OSH_THEME='/home/daniel/.oh-my-bash/custom/themes/alfonsetti/alfonsetti.theme.sh' # BAD
+# OSH_THEME='/~.oh-my-bash/custom/themes/alfonsetti/alfonsetti.theme.sh' # BAD
 OSH_THEME='alfonsetti' # GOOD.
 # https://github.com/ohmybash/oh-my-bash/blob/master/README.md
 PROMPT_DIRTRIM=0 # https://github.com/ohmybash/oh-my-bash/discussions/540
@@ -471,7 +437,7 @@ alias cd=cd_wrapper
 
 
 
-export XLA_FLAGS=--xla_gpu_cuda_data_dir=/home/daniel/miniconda3/nvvm
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=/~miniconda3/nvvm
 
 
 memory_fix() {
